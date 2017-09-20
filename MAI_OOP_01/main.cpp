@@ -4,30 +4,40 @@
 #include "Rectangle.h"
 #include "Square.h"
 
+void PrintAndSquare(Figure*);
+
 int main(int argc, char** argv) {
-	setlocale(LC_ALL, "Russian");
-	long int op;
-	std::cin >> op;
-	std::cout << op<<std::endl;
+	//setlocale(LC_ALL, "Russian");
 	std::string name;
-	std::cout << "Введите название фигуры" << std::endl;
-	std::getline(std::cin, name);
-		if (name == "Trapeze"){
-		//
-	} else
-		if (name == "Rectangle" || name == "Прямоугольник") {
-		//	
-	} else
-		if (name == "Square") {
-		//
+	std::cout << "Hi!" << std::endl;
+	while (name != "Exit")
+	{
+		std::cout << "Which figure would you like to try?Enter \"Trapezoid/Rectangle/Square\" or \"Exit\" for escape. " << std::endl;
+		std::cin>>name;
+		if (name == "Trapezoid" || name == "1") {
+			Figure *ptr = new Trapeze(std::cin);
+			PrintAndSquare(ptr);
 		}
 		else
-			std::cout << "Ошибка.Неверный формат ввода.";
+			if (name == "Rectangle" || name == "2") {
+				Figure *ptr = new Rectangle(std::cin);
+				PrintAndSquare(ptr);
+			}
+			else
+				if (name == "Square" || name == "3") {
+					Figure *ptr = new Square(std::cin);
+					PrintAndSquare(ptr);
+				}
+				else
+					if(name!="Exit")
+					std::cout << "Error. I don't know such figure."<<std::endl;
+	}
+	system("pause");
+	return 0;
+}
 
-	Figure *ptr = new Rectangle(std::cin);
+void PrintAndSquare(Figure *ptr) {
 	ptr->Print();
 	std::cout << ptr->SquareF() << std::endl;
 	delete ptr;
-	system("pause");
-	return 0;
 }

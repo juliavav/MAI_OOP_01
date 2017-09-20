@@ -10,13 +10,12 @@ Square::Square(size_t i) : side_a(i) {
 }
 
 Square::Square(std::istream &is) {
+	std::cout << "Side=";
 	is >> side_a;
 }
 
 double Square::SquareF() {
-
 	return side_a*side_a;
-
 }
 
 void Square::Print() {
