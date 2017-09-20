@@ -3,7 +3,7 @@
 #include "Trapeze.h"
 #include "Rectangle.h"
 #include "Square.h"
-
+#include "ErrorCin.h"
 void PrintAndSquare(Figure*);
 
 int main(int argc, char** argv) {
@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
 		else
 			if (name == "Rectangle" || name == "2") {
 				Figure *ptr = new Rectangle(std::cin);
-				PrintAndSquare(ptr);
+				PrintAndSquare(ptr);			
 			}
 			else
 				if (name == "Square" || name == "3") {
@@ -37,7 +37,13 @@ int main(int argc, char** argv) {
 }
 
 void PrintAndSquare(Figure *ptr) {
-	ptr->Print();
-	std::cout << ptr->SquareF() << std::endl;
+	if (!ptr->error) {
+		std::cout << "Your parameters are: ";
+		ptr->Print();
+		std::cout << "S=" << ptr->SquareF() << std::endl;
+	}
+	else {
+		std::cout << "I can't solve it.Please, try again." << std::endl;
+	}
 	delete ptr;
 }

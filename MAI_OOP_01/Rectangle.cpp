@@ -1,4 +1,5 @@
 #include "Rectangle.h"
+#include "ErrorCin.h"
 #include <iostream>
 #include <cmath>
 
@@ -10,10 +11,14 @@ Rectangle::Rectangle(size_t i, size_t j) : side_a(i), side_b(j) {
 }
 
 Rectangle::Rectangle(std::istream &is) {
+	ErrorCin *ePtr = new ErrorCin;
 	std::cout << "Side a=";
 	is >> side_a;
+	error=ePtr->IsErrorCin(is);
 	std::cout << "Side b=";
 	is >> side_b;
+	error=ePtr->IsErrorCin(is);
+	delete ePtr;
 }
 
 double Rectangle::SquareF() {

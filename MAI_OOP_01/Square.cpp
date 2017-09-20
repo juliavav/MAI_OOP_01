@@ -1,4 +1,5 @@
 #include "Square.h"
+#include"ErrorCin.h"
 #include <iostream>
 #include <cmath>
 
@@ -10,11 +11,15 @@ Square::Square(size_t i) : side_a(i) {
 }
 
 Square::Square(std::istream &is) {
+	ErrorCin *ePtr = new ErrorCin;
 	std::cout << "Side=";
 	is >> side_a;
+	error=ePtr->IsErrorCin(is);
+	delete(ePtr);
 }
 
 double Square::SquareF() {
+
 	return side_a*side_a;
 }
 
