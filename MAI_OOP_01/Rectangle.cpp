@@ -6,18 +6,27 @@
 Rectangle::Rectangle() : Rectangle(0, 0) {
 }
 
-Rectangle::Rectangle(size_t i, size_t j) : side_a(i), side_b(j) {
+Rectangle::Rectangle(long int i, long int j) : side_a(i), side_b(j) {
 	std::cout << "Rectangle created: " << side_a << ", " << side_b << std::endl;
 }
 
 Rectangle::Rectangle(std::istream &is) {
 	ErrorCin *ePtr = new ErrorCin;
+	bool errort = false;
 	std::cout << "Side a=";
 	is >> side_a;
-	error=ePtr->IsErrorCin(is);
+	if (side_a < 0)
+	{
+		errort = true;
+	}
+	error = (ePtr->IsErrorCin(is))||errort;
 	std::cout << "Side b=";
 	is >> side_b;
-	error=ePtr->IsErrorCin(is);
+	if (side_b < 0)
+	{
+		errort = true;
+	}
+	error = (ePtr->IsErrorCin(is)) || errort;
 	delete ePtr;
 }
 

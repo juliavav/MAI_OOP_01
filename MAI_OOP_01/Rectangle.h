@@ -8,15 +8,15 @@ class Rectangle : public Figure {
 public:
 	Rectangle();
 	Rectangle(std::istream &is);
-	Rectangle(size_t i, size_t j);
+	Rectangle(long int i, long int j);
 
 	double SquareF() override;
 	void   Print() override;
 
 	virtual ~Rectangle();
 private:
-	size_t side_a;
-	size_t side_b;
+	long int side_a;
+	long int side_b;
 };
 
 #endif	/* RECTANGLE_H */

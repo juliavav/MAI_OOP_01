@@ -6,22 +6,35 @@
 Trapeze::Trapeze() : Trapeze(0, 0, 0) {
 }
 
-Trapeze::Trapeze(size_t i, size_t j, size_t k) : side_a(i), side_b(j), height(k) {
+Trapeze::Trapeze(long int i, long int j, long int k) : side_a(i), side_b(j), height(k) {
 	std::cout << "Trapeze created: " << side_a << ", " << side_b << ", " << height << std::endl;
 }
 
 Trapeze::Trapeze(std::istream &is) { 
+	bool errort = false;
 	ErrorCin *ePtr = new ErrorCin;
 	std::cout << "Side a and side b - two parallel sides." << std::endl;
 	std::cout << "Side a=";
 	is >> side_a;
-	error=ePtr->IsErrorCin(is);
+	if (side_a < 0)
+	{
+		errort = true;
+	}
+	error=(ePtr->IsErrorCin(is))||errort;
 	std::cout << "Side b=";
 	is >> side_b;
-	error=ePtr->IsErrorCin(is);
+	if (side_b < 0)
+	{
+		errort = true;
+	}
+	error = (ePtr->IsErrorCin(is)) || errort;
 	std::cout << "Height=";
 	is >> height;
-	error=ePtr->IsErrorCin(is);
+	if (height < 0)
+	{
+		errort = true;
+	}
+	error = (ePtr->IsErrorCin(is)) || errort;
 	delete(ePtr);
 }
 
